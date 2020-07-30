@@ -1,0 +1,26 @@
+---
+title: "Melbourne city pedestrian traffic"
+author: "Yiwen Liu"
+date: "2020/7/21"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+```{r}
+library("rwalkr")
+start_date=as.Date("2017-07-01")
+ped_walk=melb_walk(from = start_date, to = start_date + 6L)
+library("ggplot2")
+ggplot(data=subset(ped_walk,Sensor == "Melbourne Central")) +
+  geom_line(aes(x = Date_Time, y = Count))
+```
+
+```{r echo=FALSE,results='asis'}
+library("knitr")
+kable(ped_walk[1:5,],caption="A Small Sample Table.")
+```
+
+$$s^2 = \sum_{i=1}^n (x_i-\bar{x})^2.$$
+
